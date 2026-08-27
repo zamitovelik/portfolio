@@ -41,15 +41,9 @@ export const translations = {
       headingLead: "Featured",
       headingItalic: "projects",
       subtext:
-        "A selection of things I have designed and shipped, from first concept to a live URL.",
-      viewAll: "View on GitHub",
+        "A selection of projects I've worked on, from concept to launch.",
+      viewAll: "View all work",
       hoverLabel: "View",
-      liveSite: "Live site",
-      sourceCode: "Source",
-      nextTitle: "Your project here",
-      nextText:
-        "I have room for one more build this season. Landing pages, web apps, motion-heavy interfaces.",
-      nextCta: "Start a project",
     },
 
     stack: {
@@ -87,7 +81,7 @@ export const translations = {
       headingLead: "Visual",
       headingItalic: "playground",
       subtext:
-        "Details pulled out of the work — type, gradients, layout moments I keep coming back to.",
+        "A visual scrapbook — frames, textures and compositions I keep coming back to.",
       cta: "See the code",
       close: "Close",
     },
@@ -145,15 +139,9 @@ export const translations = {
       headingLead: "Мои",
       headingItalic: "проекты",
       subtext:
-        "Подборка того, что я спроектировал и довёл до продакшена — от идеи до живой ссылки.",
-      viewAll: "Смотреть на GitHub",
+        "Подборка проектов, над которыми я работал — от идеи до запуска.",
+      viewAll: "Все работы",
       hoverLabel: "Открыть",
-      liveSite: "Открыть сайт",
-      sourceCode: "Исходники",
-      nextTitle: "Здесь может быть ваш проект",
-      nextText:
-        "В этом сезоне есть место ещё под один проект. Лендинги, веб-приложения, интерфейсы с анимацией.",
-      nextCta: "Обсудить проект",
     },
 
     stack: {
@@ -192,7 +180,7 @@ export const translations = {
       headingLead: "Визуальная",
       headingItalic: "песочница",
       subtext:
-        "Детали, вытащенные из проектов — типографика, градиенты, куски вёрстки, к которым я возвращаюсь.",
+        "Визуальный дневник — кадры, фактуры и композиции, к которым я возвращаюсь.",
       cta: "Смотреть код",
       close: "Закрыть",
     },

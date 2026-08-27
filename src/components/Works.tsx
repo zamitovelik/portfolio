@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "../i18n/LanguageProvider";
-import { projects, SOCIALS } from "../data/projects";
+import { works, SOCIALS } from "../data/projects";
 import SectionHeader from "./SectionHeader";
 import { GradientRing } from "./GradientRing";
 
@@ -36,10 +36,10 @@ export default function Works() {
           }
         />
 
-        <div className="grid grid-cols-1 gap-x-5 gap-y-10 md:grid-cols-12 md:gap-x-6 md:gap-y-12">
-          {projects.map((project, index) => (
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-12 md:gap-6">
+          {works.map((work, index) => (
             <motion.article
-              key={project.id}
+              key={work.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
@@ -48,126 +48,38 @@ export default function Works() {
                 delay: index * 0.08,
                 ease: [0.25, 0.1, 0.25, 1],
               }}
-              className={`group flex flex-col ${project.span}`}
+              className={`group relative cursor-pointer overflow-hidden rounded-3xl border border-stroke bg-surface ${work.span} ${work.aspect}`}
+              tabIndex={0}
             >
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`${project.title[lang]} - ${t.works.liveSite}`}
-                className={`relative block overflow-hidden rounded-3xl border border-stroke bg-surface ${project.aspect}`}
-              >
-                <img
-                  src={project.image}
-                  alt={project.title[lang]}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                />
+              <img
+                src={work.image}
+                alt={work.title[lang]}
+                loading={index < 2 ? "eager" : "lazy"}
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
 
-                {/* Halftone reads as a harsh dot screen over light UI
-                    screenshots, so it sits lighter than the usual 20%. */}
-                <span
-                  aria-hidden
-                  className="halftone absolute inset-0 opacity-[0.12] mix-blend-multiply"
-                />
-                <span
-                  aria-hidden
-                  className="absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/10"
-                />
+              <span
+                aria-hidden
+                className="halftone absolute inset-0 opacity-20 mix-blend-multiply"
+              />
 
-                {/* Hover veil */}
-                <span
-                  aria-hidden
-                  className="absolute inset-0 bg-bg/70 opacity-0 backdrop-blur-lg transition-opacity duration-500 group-hover:opacity-100"
-                />
+              {/* Hover veil */}
+              <span
+                aria-hidden
+                className="absolute inset-0 bg-bg/70 opacity-0 backdrop-blur-lg transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
+              />
 
-                {/* Hover label */}
-                <span className="pointer-events-none absolute inset-0 grid place-items-center px-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                  <span className="gradient-ring rounded-full p-[2px]">
-                    <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-sm text-black">
-                      {t.works.hoverLabel} &mdash;{" "}
-                      <span className="font-display italic">
-                        {project.title[lang]}
-                      </span>
-                    </span>
+              {/* Hover label */}
+              <span className="pointer-events-none absolute inset-0 grid place-items-center px-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100">
+                <span className="gradient-ring rounded-full p-[2px]">
+                  <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full bg-white px-5 py-2.5 text-sm text-black">
+                    {t.works.hoverLabel} &mdash;{" "}
+                    <span className="font-display italic">{work.title[lang]}</span>
                   </span>
                 </span>
-              </a>
-
-              {/* Caption sits below the artwork, never on top of it. */}
-              <div className="mt-5 flex flex-col gap-3 px-1">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="text-xl text-text-primary md:text-2xl">
-                    {project.title[lang]}
-                  </h3>
-                  <span className="shrink-0 text-xs uppercase tracking-[0.2em] text-muted">
-                    {project.year}
-                  </span>
-                </div>
-
-                <p className="max-w-lg text-sm leading-relaxed text-muted">
-                  {project.text[lang]}
-                </p>
-
-                <div className="flex flex-wrap items-center gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-stroke px-2.5 py-1 text-[10px] uppercase tracking-wider text-muted"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-
-                  {project.source && (
-                    <a
-                      href={project.source}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="ml-auto inline-flex items-center gap-1.5 text-xs text-muted underline-offset-4 transition-colors hover:text-text-primary hover:underline"
-                    >
-                      {t.works.sourceCode}
-                      <span aria-hidden>&#8599;</span>
-                    </a>
-                  )}
-                </div>
-              </div>
+              </span>
             </motion.article>
           ))}
-
-          {/* Open slot - the roster is meant to grow. */}
-          <motion.article
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.9, delay: 0.24, ease: [0.25, 0.1, 0.25, 1] }}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-dashed border-stroke bg-surface/50 p-6 backdrop-blur-sm md:col-span-7 md:aspect-[16/11] md:p-10"
-          >
-            <span
-              aria-hidden
-              className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#4E85BF]/15 blur-3xl"
-            />
-            <div className="relative">
-              <span className="text-xs uppercase tracking-[0.3em] text-muted">
-                {t.works.eyebrow}
-              </span>
-              <h3 className="mt-5 max-w-sm font-display text-3xl italic leading-tight text-text-primary md:text-4xl">
-                {t.works.nextTitle}
-              </h3>
-              <p className="mt-4 max-w-sm text-sm text-muted">{t.works.nextText}</p>
-            </div>
-
-            <a
-              href={`mailto:${SOCIALS.email}`}
-              className="relative mt-8 inline-flex w-fit rounded-full"
-            >
-              <GradientRing />
-              <span className="relative inline-flex items-center gap-2 rounded-full bg-text-primary px-6 py-3 text-sm text-bg transition-colors duration-300 group-hover:bg-bg group-hover:text-text-primary">
-                {t.works.nextCta}
-                <span aria-hidden>&#8599;</span>
-              </span>
-            </a>
-          </motion.article>
         </div>
       </div>
     </section>

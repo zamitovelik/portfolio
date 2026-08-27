@@ -1,74 +1,54 @@
 import type { Lang } from "../i18n/translations";
 
-export type Project = {
+export type Work = {
   id: string;
   image: string;
-  year: string;
-  tags: string[];
-  live: string;
-  source?: string;
+  title: Record<Lang, string>;
   /** Bento column span on md+ — the 7/5/5/7 rhythm from the design. */
   span: string;
   aspect: string;
-  title: Record<Lang, string>;
-  text: Record<Lang, string>;
 };
 
-export const projects: Project[] = [
+const BENTO_ASPECT = "aspect-[4/3] md:aspect-[16/11]";
+
+export const works: Work[] = [
   {
-    id: "apogee",
-    image: "/projects/website.jpg",
-    year: "2026",
-    tags: ["React", "Landing", "Motion"],
-    live: "https://website-murex-two-60.vercel.app/",
-    source: "https://github.com/zamitovelik/Website-test",
+    id: "motion",
+    image: "/work/motion.jpg",
     span: "md:col-span-7",
-    aspect: "aspect-[4/3] md:aspect-[16/11]",
-    title: { en: "Apogee", ru: "Apogee" },
-    text: {
-      en: "Landing page for an AI analytics platform. Dark interface, scroll-driven reveals and a live revenue chart in the hero.",
-      ru: "Лендинг для платформы AI-аналитики. Тёмный интерфейс, появления по скроллу и живой график выручки в первом экране.",
-    },
+    aspect: BENTO_ASPECT,
+    title: { en: "Automotive Motion", ru: "Динамика движения" },
   },
   {
-    id: "reels",
-    image: "/projects/reels.jpg",
-    year: "2026",
-    tags: ["React", "AI", "Product"],
-    live: "https://reels-trends.vercel.app/",
-    source: "https://github.com/zamitovelik/Reels",
+    id: "architecture",
+    image: "/work/architecture.jpg",
     span: "md:col-span-5",
-    aspect: "aspect-[4/3] md:aspect-[16/11]",
-    title: { en: "Reels Trends", ru: "Reels Trends" },
-    text: {
-      en: "Drop in a TikTok, Reels or Shorts link and get a breakdown of why the video lands — hooks, first three seconds, format.",
-      ru: "Кидаешь ссылку на TikTok, Reels или Shorts — получаешь разбор: почему ролик заходит, что чинить в первые 3 секунды.",
-    },
+    aspect: BENTO_ASPECT,
+    title: { en: "Urban Architecture", ru: "Городская архитектура" },
   },
   {
-    id: "notes",
-    image: "/projects/todo.jpg",
-    year: "2025",
-    tags: ["React", "i18n", "localStorage"],
-    live: "https://todo-list-ochre-eta.vercel.app/",
-    source: "https://github.com/zamitovelik/todo-list",
+    id: "perspective",
+    image: "/work/perspective.jpg",
     span: "md:col-span-5",
-    aspect: "aspect-[4/3] md:aspect-[16/11]",
-    title: { en: "Notes", ru: "Notes" },
-    text: {
-      en: "A notes app with search, list and grid views, editing in place and a bilingual interface. State persists to localStorage.",
-      ru: "Приложение для заметок: поиск, список и сетка, редактирование на месте и двуязычный интерфейс. Состояние в localStorage.",
-    },
+    aspect: BENTO_ASPECT,
+    title: { en: "Human Perspective", ru: "Человеческий взгляд" },
+  },
+  {
+    id: "identity",
+    image: "/work/identity.jpg",
+    span: "md:col-span-7",
+    aspect: BENTO_ASPECT,
+    title: { en: "Brand Identity", ru: "Фирменный стиль" },
   },
 ];
 
 export const explorations = [
-  { src: "/projects/ex-1.jpg", rotate: -3 },
-  { src: "/projects/ex-4.jpg", rotate: 2 },
-  { src: "/projects/ex-2.jpg", rotate: 4 },
-  { src: "/projects/ex-6.jpg", rotate: -2 },
-  { src: "/projects/ex-3.jpg", rotate: 3 },
-  { src: "/projects/ex-5.jpg", rotate: -4 },
+  { src: "/gallery/g1.jpg", rotate: -3 },
+  { src: "/gallery/g2.jpg", rotate: 2 },
+  { src: "/gallery/g3.jpg", rotate: 4 },
+  { src: "/gallery/g4.jpg", rotate: -2 },
+  { src: "/gallery/g5.jpg", rotate: 3 },
+  { src: "/gallery/g6.jpg", rotate: -4 },
 ];
 
 export const SOCIALS = {

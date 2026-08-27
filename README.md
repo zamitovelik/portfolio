@@ -42,11 +42,21 @@ names stay in Latin in both languages, which keeps them on Instrument Serif.
 already-zeroed opacity as its target on the second pass, leaving the copy
 permanently invisible.
 
-## Adding a project
+**HLS probing order.** Chrome answers
+`canPlayType("application/vnd.apple.mpegurl")` with `"maybe"` — a truthy string
+— while being unable to play HLS natively. So `useHlsVideo` reaches for
+hls.js/MSE first and keeps the native `<video src>` path for iOS Safari, which
+has real HLS support and no `MediaSource`. Probing native support first leaves
+the background video permanently black everywhere but Safari.
 
-Append an entry to `projects` in `src/data/projects.ts` — `title` and `text`
-each take `{ en, ru }`. Drop the screenshot in `public/projects/`. The bento
-grid follows a 7/5/5/7 column rhythm via each entry's `span`.
+## Adding a card
+
+Append an entry to `works` in `src/data/projects.ts` — `title` takes
+`{ en, ru }`. Drop the image in `public/work/`. The bento grid follows a
+7/5/5/7 column rhythm via each entry's `span`. Gallery images live in
+`public/gallery/` and are listed in `explorations`.
+
+Card imagery is decorative stock photography (Lorem Picsum, Unsplash licence).
 
 ## Deploying
 

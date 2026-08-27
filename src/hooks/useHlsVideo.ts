@@ -1,8 +1,14 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Attaches an HLS stream to a <video>. Safari plays HLS natively; everywhere
- * else hls.js is pulled in on demand so it stays out of the initial bundle.
+ * Attaches an HLS stream to a <video>.
+ *
+ * Order matters: Chrome reports canPlayType("application/vnd.apple.mpegurl")
+ * as "maybe" — truthy — while being unable to play HLS natively at all. Probing
+ * native support first therefore silently kills the video everywhere except
+ * Safari. So MSE/hls.js wins whenever it is available, and the native element
+ * path is reserved for iOS Safari, which has real HLS support and no
+ * MediaSource.
  */
 export function useHlsVideo(src: string) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -11,7 +17,11 @@ export function useHlsVideo(src: string) {
     const video = videoRef.current;
     if (!video) return;
 
-    if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    const canPlayNatively =
+      video.canPlayType("application/vnd.apple.mpegurl") !== "";
+    const hasMediaSource = typeof window.MediaSource !== "undefined";
+
+    if (canPlayNatively && !hasMediaSource) {
       video.src = src;
       return;
     }
@@ -19,13 +29,28 @@ export function useHlsVideo(src: string) {
     let cancelled = false;
     let instance: { destroy: () => void } | null = null;
 
-    import("hls.js").then(({ default: Hls }) => {
-      if (cancelled || !Hls.isSupported()) return;
-      const hls = new Hls({ enableWorker: true, lowLatencyMode: false });
-      hls.loadSource(src);
-      hls.attachMedia(video);
-      instance = hls;
-    });
+    // Kept out of the initial bundle — it is only needed for the ambient video.
+    import("hls.js")
+      .then(({ default: Hls }) => {
+        if (cancelled) return;
+
+        if (Hls.isSupported()) {
+          const hls = new Hls({ enableWorker: true, lowLatencyMode: false });
+          hls.loadSource(src);
+          hls.attachMedia(video);
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            void video.play().catch(() => {
+              /* autoplay blocked — the poster gradient stands in */
+            });
+          });
+          instance = hls;
+        } else if (canPlayNatively) {
+          video.src = src;
+        }
+      })
+      .catch(() => {
+        if (!cancelled && canPlayNatively) video.src = src;
+      });
 
     return () => {
       cancelled = true;
