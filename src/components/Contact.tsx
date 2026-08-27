@@ -37,7 +37,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-24 overflow-hidden bg-bg pb-8 pt-16 md:pb-12 md:pt-20"
+      className="relative scroll-mt-24 overflow-hidden pb-8 pt-16 md:pb-12 md:pt-20"
     >
       <video
         ref={videoRef}

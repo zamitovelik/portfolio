@@ -5,7 +5,7 @@ export default function Stats() {
   const { t } = useLanguage();
 
   return (
-    <section className="bg-bg py-16 md:py-24">
+    <section className="py-16 md:py-24">
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 lg:px-16">
         <div className="grid grid-cols-1 gap-10 border-t border-stroke pt-12 sm:grid-cols-3 md:gap-6">
           {t.stats.map((stat, index) => (

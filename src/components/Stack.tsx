@@ -8,7 +8,7 @@ export default function Stack() {
   const { t } = useLanguage();
 
   return (
-    <section id="stack" className="scroll-mt-24 bg-bg py-16 md:py-24">
+    <section id="stack" className="scroll-mt-24 py-16 md:py-24">
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 lg:px-16">
         <SectionHeader
           eyebrow={t.stack.eyebrow}
@@ -23,7 +23,7 @@ export default function Stack() {
               className="group relative hidden shrink-0 rounded-full md:inline-flex"
             >
               <GradientRing />
-              <span className="relative inline-flex items-center gap-2 rounded-full border border-stroke bg-surface px-5 py-2.5 text-sm text-text-primary transition-colors duration-300 group-hover:border-transparent">
+              <span className="relative inline-flex items-center gap-2 rounded-full border border-stroke bg-surface/80 px-5 py-2.5 text-sm text-text-primary backdrop-blur-md transition-colors duration-300 group-hover:border-transparent">
                 {t.stack.viewAll}
                 <span
                   aria-hidden

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingScreen from "./components/LoadingScreen";
+import Starfield from "./components/Starfield";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Works from "./components/Works";
@@ -46,8 +47,9 @@ export default function App() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
         >
+          <Starfield />
           <Navbar />
-          <main>
+          <main className="relative z-10">
             <Hero />
             <Works />
             <Stack />

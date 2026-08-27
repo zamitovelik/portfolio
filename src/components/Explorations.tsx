@@ -68,7 +68,7 @@ export default function Explorations() {
     <section
       id="explorations"
       ref={sectionRef}
-      className="relative min-h-[300vh] scroll-mt-24 bg-bg"
+      className="relative min-h-[300vh] scroll-mt-24"
     >
       {/* Layer 1 - pinned message */}
       <div
@@ -101,7 +101,7 @@ export default function Explorations() {
           className="group pointer-events-auto relative inline-flex rounded-full"
         >
           <GradientRing />
-          <span className="relative inline-flex items-center gap-2 rounded-full border border-stroke bg-surface px-5 py-2.5 text-sm text-text-primary transition-colors duration-300 group-hover:border-transparent">
+          <span className="relative inline-flex items-center gap-2 rounded-full border border-stroke bg-surface/80 px-5 py-2.5 text-sm text-text-primary backdrop-blur-md transition-colors duration-300 group-hover:border-transparent">
             <GithubIcon />
             {t.explorations.cta}
           </span>

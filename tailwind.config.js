@@ -26,6 +26,10 @@ export default {
           "0%": { opacity: "0", transform: "translateY(8px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        twinkle: {
+          "0%, 100%": { opacity: "0.7" },
+          "50%": { opacity: "0.25" },
+        },
         "gradient-shift": {
           "0%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
@@ -36,6 +40,8 @@ export default {
         "scroll-down": "scroll-down 1.5s ease-in-out infinite",
         "role-fade-in": "role-fade-in 0.4s ease-out",
         "gradient-shift": "gradient-shift 6s ease infinite",
+        twinkle: "twinkle 4s ease-in-out infinite",
+        "twinkle-slow": "twinkle 7s ease-in-out infinite",
       },
     },
   },
