@@ -8,7 +8,15 @@ import { GradientRing } from "./GradientRing";
 const ROLES = ["Fullstack", "Frontend", "Creative", "Founder"];
 
 export default function Hero() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+
+  // "Эльмурад Замитов" is far wider than "Elmurad Zamitov": it is both a longer
+  // string and set in Playfair Display Italic, the Cyrillic fallback, which
+  // runs wider than Instrument Serif. It needs its own step down the scale.
+  const nameSize =
+    lang === "ru"
+      ? "text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl"
+      : "text-6xl md:text-8xl lg:text-9xl";
   const videoRef = useHlsVideo(HLS_SRC);
   const rootRef = useRef<HTMLElement>(null);
   const [roleIndex, setRoleIndex] = useState(0);
@@ -78,7 +86,9 @@ export default function Hero() {
           {t.hero.eyebrow}
         </span>
 
-        <h1 className="name-reveal mb-6 font-display text-6xl italic leading-[0.9] tracking-tight text-text-primary md:text-8xl lg:text-9xl">
+        <h1
+          className={`name-reveal mb-6 max-w-[92vw] font-display italic leading-[0.95] tracking-tight text-text-primary ${nameSize}`}
+        >
           {t.hero.name}
         </h1>
 

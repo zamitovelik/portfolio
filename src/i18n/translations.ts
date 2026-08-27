@@ -44,6 +44,12 @@ export const translations = {
         "A selection of projects I've worked on, from concept to launch.",
       viewAll: "View all work",
       hoverLabel: "View",
+      liveSite: "Open the live site",
+      sourceCode: "Source",
+      nextTitle: "Your project here",
+      nextText:
+        "I have room for one more build this season. Landing pages, web apps, motion-heavy interfaces.",
+      nextCta: "Start a project",
     },
 
     stack: {
@@ -142,6 +148,12 @@ export const translations = {
         "Подборка проектов, над которыми я работал — от идеи до запуска.",
       viewAll: "Все работы",
       hoverLabel: "Открыть",
+      liveSite: "Открыть сайт",
+      sourceCode: "Исходники",
+      nextTitle: "Здесь может быть ваш проект",
+      nextText:
+        "В этом сезоне есть место ещё под один проект. Лендинги, веб-приложения, интерфейсы с анимацией.",
+      nextCta: "Обсудить проект",
     },
 
     stack: {
